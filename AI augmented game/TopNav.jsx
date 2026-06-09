@@ -1,4 +1,4 @@
-function TopNav({ active, setActiveStep, showCase, setShowCase, showCaseTip, setShowCaseTip, completedSteps, setShowFinish, exportPlaybook, isExporting }) {
+function TopNav({ active, setActiveStep, showCase, setShowCase, showCaseTip, setShowCaseTip, completedSteps, setShowFinish, exportPlaybook, isExporting, theme, toggleTheme }) {
   return (
     <nav className="no-print" style={{
       background:"#F5F1E8", borderBottom:"1px solid #D6CFB8",
@@ -93,8 +93,17 @@ function TopNav({ active, setActiveStep, showCase, setShowCase, showCaseTip, set
         </button>
       </div>
 
-      {/* Right: export */}
+      {/* Right: theme + export */}
       <div style={{display:"flex", alignItems:"center", gap:"10px", justifySelf:"end"}}>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={toggleTheme}
+          title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {theme === "dark" ? "☀ Light" : "☾ Dark"}
+        </button>
         {completedSteps.size === STEPS.length && (
           <button onClick={() => setShowFinish(true)} style={{
             background:"#C8973A", color:"#F5EFE3", border:"none",

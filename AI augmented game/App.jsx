@@ -1,4 +1,12 @@
 function App() {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(t => t === "dark" ? "light" : "dark");
+
   const [activeStep, setActiveStep] = useState(null);
   const [hoveredStep, setHoveredStep] = useState(null);
   const [tab, setTab] = useState("context");
@@ -90,6 +98,7 @@ function App() {
   };
 
   const handleSetupConfirm = () => {
+    setTheme("dark");
     setTeamName(teamName.trim() || "Team A");
     setSetupDone(true);
     setShowCaseTip(true);
@@ -164,6 +173,8 @@ function App() {
         setShowFinish={setShowFinish}
         exportPlaybook={exportPlaybook}
         isExporting={isExporting}
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
 
       {!active && (

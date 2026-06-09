@@ -11,30 +11,19 @@ function Gameboard({
     <div className="fade-in no-print" style={{flex:1, display:"flex", flexDirection:"column"}}>
 
       {/* Landscape gameboard */}
-      <div style={{flex:1, position:"relative", minHeight:"560px", maxHeight:"100vh", width:"100%", overflow:"hidden"}}>
-        {/* Background image */}
-        <div style={{
-          position:"absolute", inset:0,
-          maxHeight:"100vh", width:"100%",
-          backgroundImage:'url(Office%20new%20year.png)',
-          backgroundSize:"cover", backgroundPosition:"center top",
-          backgroundRepeat:"no-repeat"
-        }}/>
-        {/* Subtle overlay to make tiles readable */}
-        <div style={{position:"absolute", inset:0, background:"rgba(245,241,232,0.18)"}}/>
+      <div className="scene-container" style={{flex:1, minHeight:"560px", maxHeight:"100vh", width:"100%", overflow:"hidden"}}>
+        <SceneBackground/>
 
         {/* Hero title — overlaid top-left inside landscape */}
         <div style={{
           position:"absolute", top:"28px", left:"52px", zIndex:3, maxWidth:"280px"
         }}>
-          <h1 className="display-font" style={{
+          <h1 className="display-font hero-text" style={{
           fontSize:"38px", fontWeight:400, lineHeight:1.05,
-          margin:"0 0 6px 0", letterSpacing:"-1.2px", color:"#ffffff",  // 👈 changed
-          textShadow:"0 1px 8px rgba(245,241,232,0.7)"
+          margin:"0 0 6px 0", letterSpacing:"-1.2px"
         }}>The Augmented Consultant Game</h1>
         <div style={{width:"36px", height:"2px", background:"#A86B3F", marginBottom:"8px"}}></div>
-        <p style={{fontSize:"12px", color:"#ffffff", margin:0, lineHeight:1.5,  // 👈 changed
-          textShadow:"0 1px 4px rgba(245,241,232,0.8)"}}>
+        <p className="hero-subtext" style={{fontSize:"12px", margin:0, lineHeight:1.5}}>
           A step-by-step gameboard for brainstorming and applying AI across a real operations engagement.
         </p>
         </div>
@@ -136,9 +125,9 @@ function Gameboard({
                 {/* Title — white on hover; icon inside tile unchanged */}
                 <text y={half+18} textAnchor="middle" fontSize="13"
                   fontFamily="Fraunces, serif" fontWeight="500"
-                  fill={hoveredStep===step.id ? "#FFFFFF" : "#1A1814"}
+                  fill={hoveredStep===step.id ? "var(--station-title-hover)" : "#1A1814"}
                   style={{paintOrder:"stroke", transition:"fill 0.25s ease"}}
-                  stroke={hoveredStep===step.id ? "rgba(26,24,20,0.35)" : "rgba(245,241,232,0.6)"}
+                  stroke={hoveredStep===step.id ? "var(--station-title-stroke-hover)" : "var(--station-title-stroke-default)"}
                   strokeWidth="3">{step.title}</text>
 
                 {/* Duration — bottom inside the coloured tile */}

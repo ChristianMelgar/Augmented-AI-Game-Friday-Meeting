@@ -12,15 +12,12 @@ function FinishScreen({ showFinish, setShowFinish, getMatrix, teamName, confetti
   }, 0);
 
   return (
-    <div style={{
+    <div className="scene-container" style={{
       position:"fixed", inset:0, zIndex:300,
-      backgroundImage:'url(Office%20new%20year.png)',
-      backgroundSize:"cover", backgroundPosition:"center bottom",
       display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
       animation:"fadeUp 0.5s ease-out"
     }}>
-      {/* Dark overlay */}
-      <div style={{position:"absolute", inset:0, background:"rgba(26,24,20,0.55)"}}/>
+      <SceneBackground variant="finish"/>
 
       {/* Confetti canvas */}
       <canvas ref={el => {

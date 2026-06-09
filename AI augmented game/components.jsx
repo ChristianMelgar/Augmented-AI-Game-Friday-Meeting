@@ -1,3 +1,19 @@
+function SceneBackground({ variant }) {
+  const posClass = variant === "finish" ? " scene-background--finish-pos" : "";
+  const overlayClass =
+    variant === "phase" ? " scene-overlay--phase"
+    : variant === "finish" ? " scene-overlay--finish"
+    : "";
+
+  return (
+    <>
+      <div className={`scene-background scene-background--dark${posClass}`} aria-hidden="true"/>
+      <div className={`scene-background scene-background--light${posClass}`} aria-hidden="true"/>
+      <div className={`scene-overlay${overlayClass}`} aria-hidden="true"/>
+    </>
+  );
+}
+
 function CopyButton({text}) {
   const [copied, setCopied] = useState(false);
   const handleCopy = () => {

@@ -14,8 +14,8 @@ function BrainstormOverlay({
   const accentColor = step ? step.color : "#6B2230";
 
   return (
-    <div className="no-print" style={{position:"fixed",inset:0,zIndex:200,backgroundImage:'url(Office%20new%20year.png)',backgroundSize:"cover",backgroundPosition:"center top",display:"flex",flexDirection:"column"}}>
-      <div style={{position:"absolute",inset:0,background:"rgba(245,241,232,0.18)",pointerEvents:"none"}}/>
+    <div className="no-print scene-container" style={{position:"fixed",inset:0,zIndex:200,display:"flex",flexDirection:"column"}}>
+      <SceneBackground/>
 
       {/* Header */}
       <div style={{position:"relative",zIndex:2,padding:"18px 36px 14px 36px",display:"flex",alignItems:"center",justifyContent:"space-between",borderBottom:"1px solid rgba(214,207,184,0.4)",backdropFilter:"blur(12px)",WebkitBackdropFilter:"blur(12px)",background:"rgba(255,253,248,0.72)"}}>

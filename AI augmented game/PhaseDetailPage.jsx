@@ -211,13 +211,11 @@ function PhaseDetailPage({ active, tab, setTab, setActiveStep, getMatrix, setMat
   ];
 
   return (
-    <div className="fade-in no-print" style={{
-      flex:1, position:"relative", overflow:"hidden", display:"flex", flexDirection:"column",
-      maxHeight:"100vh", width:"100%",
-      backgroundImage:'url(Office%20new%20year.png)',
-      backgroundSize:"cover", backgroundPosition:"center top"
+    <div className="fade-in no-print scene-container" style={{
+      flex:1, overflow:"hidden", display:"flex", flexDirection:"column",
+      maxHeight:"100vh", width:"100%"
     }}>
-      <div style={{position:"absolute",inset:0,background:"rgba(245,241,232,0.15)",pointerEvents:"none"}}/>
+      <SceneBackground variant="phase"/>
 
       {/* Phase icon */}
       <div style={{
@@ -231,20 +229,14 @@ function PhaseDetailPage({ active, tab, setTab, setActiveStep, getMatrix, setMat
 
       {/* Header — back button + title only, no phase metadata */}
       <div style={{position:"relative", zIndex:2, padding:"16px 36px 14px 36px"}}>
-        <button onClick={() => setActiveStep(null)} style={{
-          background:"none", border:"none", cursor:"pointer",
-          color:"rgba(58,52,44,0.70)", fontSize:"11px",
-          fontFamily:"JetBrains Mono, monospace", letterSpacing:"1.5px",
-          padding:"0 0 12px 0", display:"flex", alignItems:"center", gap:"5px"
-        }}>← BACK TO GAMEBOARD</button>
-        <h2 className="display-font" style={{
+        <button type="button" className="phase-back-btn" onClick={() => setActiveStep(null)}>← BACK TO GAMEBOARD</button>
+        <h2 className="display-font phase-hero-text" style={{
           fontSize:"42px", fontWeight:400, lineHeight:1.0,
-          margin:"0 0 4px 0", letterSpacing:"-1.2px", color:"#FFFFFF",
-          textShadow:"0 1px 8px rgba(26,24,20,0.45)"
+          margin:"0 0 4px 0", letterSpacing:"-1.2px"
         }}>{active.title}</h2>
-        <p className="display-font" style={{
-          fontSize:"15px", fontStyle:"italic", color:"#FFFFFF",
-          margin:0, lineHeight:1.35, textShadow:"0 1px 6px rgba(26,24,20,0.45)"
+        <p className="display-font phase-hero-subtext" style={{
+          fontSize:"15px", fontStyle:"italic",
+          margin:0, lineHeight:1.35
         }}>{active.lede}</p>
       </div>
 
