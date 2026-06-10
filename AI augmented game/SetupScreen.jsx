@@ -1,13 +1,12 @@
 function SetupScreen({ teamName, setTeamName, handleSetupConfirm }) {
   return (
-    <div style={{
+    <div className="scene-container" style={{
       position:"fixed", inset:0, zIndex:100,
-      display:"flex", alignItems:"center", justifyContent:"center", padding:"24px",
-      backgroundImage:"url(Office%20new%20year.png)",
-      backgroundSize:"cover", backgroundPosition:"center top"
+      display:"flex", alignItems:"center", justifyContent:"center", padding:"24px"
     }}>
+      <SceneBackground/>
       {/* Tint so the form card stays readable over the scene */}
-      <div style={{ position:"absolute", inset:0, background:"rgba(26,24,20,0.42)" }}/>
+      <div style={{ position:"absolute", inset:0, background:"rgba(26,24,20,0.42)", pointerEvents:"none" }}/>
       <div style={{
         position:"relative", zIndex:1,
         background:"rgba(245,241,232,0.97)", maxWidth:"480px", width:"100%",

@@ -3,8 +3,14 @@
 /* Theme tokens — dark mode matches the repo defaults exactly */
 :root,
 [data-theme="dark"] {
-  --scene-bg-dark: url('Office%20new%20year.png');
-  --scene-bg-light-img: url('Office%20Hellerup.jpg');
+  --scene-bg-dark: url('Office%20hellerup%20dark%20version.png');
+  --scene-bg-light-img: url('Office%20hellerup%20light%20version.png');
+  --scene-bg-size: cover;
+  --scene-bg-position: center top;
+  --scene-bg-position-dark: center -5px;
+  --scene-bg-position-finish: center bottom;
+  --scene-bg-position-finish-dark: center calc(100% - 5px);
+  --scene-bg-repeat: no-repeat;
   --scene-overlay: rgba(245, 241, 232, 0.18);
   --scene-overlay-phase: rgba(245, 241, 232, 0.15);
   --hero-text: #ffffff;
@@ -17,6 +23,16 @@
   --station-title-stroke-default: rgba(245, 241, 232, 0.6);
   --scene-overlay-finish: rgba(26, 24, 20, 0.55);
   --phase-back-text: rgba(255, 255, 255, 0.88);
+  /* Top nav — dark theme (warm charcoal) */
+  --nav-bg: #1C1A17;
+  --nav-border: rgba(245, 241, 232, 0.12);
+  --nav-title: #F0EBE0;
+  --nav-link: #A29B8E;
+  --nav-link-active: #F5EFE3;
+  --nav-accent: #C8973A;
+  --nav-export-bg: #E8DEC8;
+  --nav-export-text: #1A1814;
+  --nav-export-bg-hover: #F2EADA;
 }
 
 [data-theme="light"] {
@@ -32,30 +48,50 @@
   --station-title-hover: #1A1814;
   --station-title-stroke-hover: rgba(255, 255, 255, 0.65);
   --station-title-stroke-default: rgba(255, 255, 255, 0.55);
+  /* Top nav — light theme (current look) */
+  --nav-bg: #F5F1E8;
+  --nav-border: #D6CFB8;
+  --nav-title: #1A1814;
+  --nav-link: #6B655A;
+  --nav-link-active: #1A1814;
+  --nav-accent: #A86B3F;
+  --nav-export-bg: #1A1814;
+  --nav-export-text: #F5F1E8;
+  --nav-export-bg-hover: #3A4148;
 }
 
 .scene-container { position: relative; }
 
+/* Dark + light layers share identical sizing/position so theme toggle does not jump */
 .scene-background {
   position: absolute;
   inset: 0;
   max-height: 100vh;
   width: 100%;
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+  background-size: var(--scene-bg-size);
+  background-position: var(--scene-bg-position);
+  background-repeat: var(--scene-bg-repeat);
   transition: opacity 0.4s ease;
   pointer-events: none;
 }
 
 .scene-background--dark {
   background-image: var(--scene-bg-dark);
+  background-position: var(--scene-bg-position-dark);
   opacity: 1;
+}
+
+.scene-background--dark.scene-background--finish-pos {
+  background-position: var(--scene-bg-position-finish-dark);
 }
 
 .scene-background--light {
   background-image: var(--scene-bg-light-img);
   opacity: 0;
+}
+
+.scene-background--light.scene-background--finish-pos {
+  background-position: var(--scene-bg-position-finish);
 }
 
 [data-theme="light"] .scene-background--dark { opacity: 0; }
@@ -72,8 +108,6 @@
 .scene-overlay--phase { background: var(--scene-overlay-phase); }
 
 .scene-overlay--finish { background: var(--scene-overlay-finish); }
-
-.scene-background--finish-pos { background-position: center bottom; }
 
 .phase-back-btn {
   background: none;
@@ -122,15 +156,15 @@
 
 .theme-toggle {
   background: transparent;
-  border: 1px solid #D6CFB8;
-  color: #1A1814;
+  border: 1px solid var(--nav-border);
+  color: var(--nav-title);
   padding: 8px 14px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   letter-spacing: 1.5px;
   cursor: pointer;
   border-radius: 6px;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, color 0.3s ease;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -138,9 +172,59 @@
 }
 
 .theme-toggle:hover {
-  border-color: #A86B3F;
+  border-color: var(--nav-accent);
   background: rgba(168, 107, 63, 0.06);
 }
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: rgba(245, 241, 232, 0.07);
+}
+
+/* ── Top nav ── */
+.topnav {
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.topnav-title { color: var(--nav-title); transition: color 0.3s ease; }
+
+[data-theme="dark"] .topnav-logo-icon line { stroke-opacity: 0.8; }
+
+.topnav-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--nav-link);
+  padding: 0 0 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.topnav-link:hover { color: var(--nav-link-active); }
+
+.topnav-link--active {
+  color: var(--nav-link-active);
+  border-bottom-color: var(--nav-accent);
+}
+
+.topnav-export {
+  background: var(--nav-export-bg);
+  color: var(--nav-export-text);
+  border: none;
+  padding: 10px 22px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.3s ease;
+}
+
+.topnav-export:hover:not(:disabled) { background: var(--nav-export-bg-hover); }
+.topnav-export:disabled { opacity: 0.7; cursor: wait; }
 
 html,body { margin:0; padding:0; background:#F7F1E4; font-family:'Inter',system-ui,sans-serif; color:#102033; }
 .display-font { font-family:'Fraunces',Georgia,serif; }
